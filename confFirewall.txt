@@ -1,0 +1,81 @@
+Ubuntu comes with a built-in firewall management tool called Uncomplicated Firewall (UFW) by default. You can easily install and configure it to control the firewall settings on your system. Here's how to install and use UFW:
+
+1. **Open the Terminal**: You can press `Ctrl + Alt + T` to open a terminal window, or you can search for "Terminal" in the Ubuntu application launcher.
+
+2. **Check if UFW is Installed**: UFW is usually pre-installed on Ubuntu, but it's good to confirm its status. You can do this by running the following command:
+
+   ```bash
+   sudo ufw status
+   ```
+
+   If it's not installed, you can install it with the following command:
+
+   ```bash
+   sudo apt update
+   sudo apt install ufw
+   ```
+
+3. **Enable UFW**: If UFW is not enabled, you need to enable it by running:
+
+   ```bash
+   sudo ufw enable
+   ```
+
+4. **Configuring UFW Rules**: Now, you can configure the firewall rules as needed. Here are some common UFW commands:
+
+   - To allow incoming SSH traffic (for remote access):
+     ```bash
+     sudo ufw allow OpenSSH
+     ```
+
+   - To allow incoming web traffic (HTTP):
+     ```bash
+     sudo ufw allow 80/tcp
+     ```
+
+   - To allow incoming secure web traffic (HTTPS):
+     ```bash
+     sudo ufw allow 443/tcp
+     ```
+
+   - To allow a specific port (replace `<PORT>` with the desired port number):
+     ```bash
+     sudo ufw allow <PORT>/tcp
+     ```
+
+   - To allow traffic from a specific IP address or range:
+     ```bash
+     sudo ufw allow from <IP_ADDRESS or IP_RANGE>
+     ```
+
+   - To deny incoming traffic on a specific port (replace `<PORT>` with the port number):
+     ```bash
+     sudo ufw deny <PORT>/tcp
+     ```
+
+   - To delete a rule (replace `<RULE>` with the rule number):
+     ```bash
+     sudo ufw delete <RULE>
+     ```
+
+   Make sure to replace placeholders with the actual values you want to use.
+
+5. **Review and Confirm Rules**: You can check your rules to ensure they are correct:
+
+   ```bash
+   sudo ufw status
+   ```
+
+6. **Reload UFW**: After making changes to the rules, reload UFW to apply the changes:
+
+   ```bash
+   sudo ufw reload
+   ```
+
+7. **Start UFW on Boot**: To ensure that UFW starts automatically at boot, run:
+
+   ```bash
+   sudo systemctl enable ufw
+   ```
+
+That's it! You now have a basic firewall set up on your Ubuntu system. Be cautious when configuring firewall rules to avoid locking yourself out of the system, especially when restricting SSH access.
